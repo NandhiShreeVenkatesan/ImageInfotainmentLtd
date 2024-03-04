@@ -1,0 +1,138 @@
+package pakage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class IMPartner {
+
+	public static void main(String[] args) throws InterruptedException {
+	    	System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+	        ChromeDriver driver = new ChromeDriver();
+	        driver.get("http://10.1.1.1:8064/Registration/PartnerLogin");
+	        driver.manage().window().maximize();
+	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+	
+	        // LOGIN PAGE
+	        driver.findElement(By.name("UserId")).sendKeys("mani@gmail.com");
+	        driver.findElement(By.name("Password")).sendKeys("12345");
+	        driver.findElement(By.className("btn")).click();
+	        
+	        //MANAGE PRODUCTS
+	        WebElement inputField1 = driver.findElement(By.xpath("(//input[@id='tdPrice'])[1]"));
+	        inputField1.clear();
+	        inputField1.sendKeys("5000");
+
+	        Actions actions = new Actions(driver);
+	        WebElement element = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[1]"));
+	        element.click();
+	        Keys keyToPress = Keys.ARROW_RIGHT;
+	        int numberOfKeyPresses = 4;
+	        for (int i = 0; i < numberOfKeyPresses; i++) {
+	            actions.sendKeys(element, keyToPress).perform();
+	        }
+	        
+	        WebElement offer = driver.findElement(By.xpath("(//input[@id='tdOffer'])[1]"));
+	        offer.clear();
+	        offer.sendKeys("20");
+	       
+	        WebElement inputField2 = driver.findElement(By.xpath("(//input[@id='tdPrice'])[2]"));
+	        inputField2.clear();
+	        inputField2.sendKeys("5000");
+
+	        WebElement element2 = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[2]"));
+	        element2.click();
+	        int numberOfKeyPresses2 = 4;
+	        for (int j = 0; j < numberOfKeyPresses2; j++) {
+	            actions.sendKeys(element2, keyToPress).perform();
+	        }
+	        WebElement offer1 = driver.findElement(By.xpath("(//input[@id='tdOffer'])[2]"));
+	        offer1.clear();
+	        offer1.sendKeys("20");
+
+	        WebElement inputField3 = driver.findElement(By.xpath("(//input[@id='tdPrice'])[3]"));
+	        inputField3.clear();
+	        inputField3.sendKeys("5000");
+
+	        WebElement element3 = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[3]"));
+	        element3.click();
+	        int numberOfKeyPresses3 = 4;
+	        for (int k = 0; k < numberOfKeyPresses3; k++) {
+	            actions.sendKeys(element3, keyToPress).perform();
+	        }
+	        WebElement offer2 = driver.findElement(By.xpath("(//input[@id='tdOffer'])[3]"));
+	        offer2.clear();
+	        offer2.sendKeys("20");
+
+	        WebElement inputField4 = driver.findElement(By.xpath("(//input[@id='tdPrice'])[4]"));
+	        inputField4.clear();
+	        inputField4.sendKeys("5000");
+
+	        WebElement element4 = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[4]"));
+	        element4.click();
+	        int numberOfKeyPresses4 = 4;
+	        for (int l = 0; l < numberOfKeyPresses4; l++) {
+	            actions.sendKeys(element4, keyToPress).perform();
+	        }
+	        WebElement offer3 = driver.findElement(By.xpath("(//input[@id='tdOffer'])[4]"));
+	        offer3.clear();
+	        offer3.sendKeys("20");
+	        Thread.sleep(2000);
+
+	        driver.findElement(By.id("btnSubmitData")).click();
+
+	        //BUYER INFO- BILLING & SHIPPING ADDRESS
+	        driver.findElement(By.id("Name")).sendKeys("Dhee");
+	        driver.findElement(By.id("Address")).sendKeys("40/45, NEW BOAG ROAD");
+	        driver.findElement(By.id("District")).sendKeys("KOLLAM");
+	        WebElement element1= driver.findElement(By.id("State"));
+			Select dd1=new Select(element1);
+			dd1.selectByVisibleText("KERALA");
+			driver.findElement(By.id("Pincode")).sendKeys("123456");
+			driver.findElement(By.id("Landmark")).sendKeys("CHURCH OPP");
+			driver.findElement(By.id("MobileNo")).sendKeys("9087475953");
+			driver.findElement(By.id("Email")).sendKeys("dhee@gmail.com");
+			driver.findElement(By.id("sameasPresent")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.id("sameasPresent")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.id("NameShip")).sendKeys("Dhee dhee");
+	        driver.findElement(By.id("AddressShip")).sendKeys("40/45, NEW BOAG ROAD");
+	        driver.findElement(By.id("DistrictShip")).sendKeys("LUCY");
+	        WebElement element0= driver.findElement(By.id("StateShip"));
+			Select dd2=new Select(element0);
+			dd2.selectByVisibleText("ANDHRA PRADESH");
+			driver.findElement(By.id("PincodeShip")).sendKeys("123456");
+			driver.findElement(By.id("LandmarkShip")).sendKeys("CHURCH OPP");
+			driver.findElement(By.id("MobileNoShip")).sendKeys("9087475953");
+			driver.findElement(By.id("EmailShip")).sendKeys("dhee@gmail.com");
+			driver.findElement(By.id("btnSubmit")).click();
+			driver.findElement(By.xpath("//input[@class='btn cancel-btn w-100p w-300px mb-3 m-auto']")).click();
+			driver.findElement(By.id("PincodeShip")).sendKeys("175963");
+			driver.findElement(By.id("LandmarkShip")).sendKeys("LUZ CORNER");
+			driver.findElement(By.id("MobileNoShip")).sendKeys("9087475798");
+			Thread.sleep(2000);
+			driver.findElement(By.id("btnSubmit")).click();
+			
+			//MAKE PAYMENT
+			driver.findElement(By.xpath("//input[@class='btn submit-btn w-100p w-300px mb-3 m-auto']")).click();
+			
+		    //CONFIRM PAYMENT
+			driver.findElement(By.id("submit-btn")).click();
+			
+			//THANK YOU PAGE- ORDER SUMMARY
+			driver.findElement(By.className("OrderView")).click();
+			driver.findElement(By.xpath("(//a[@class='view tooltp'])[1]")).click();
+			driver.navigate().back();
+			driver.findElement(By.id("40369")).click();
+			
+			driver.findElement(By.xpath("//a[text()='Logout']")).click();
+			driver.quit();
+
+	    }
+	}
