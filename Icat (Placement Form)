@@ -1,0 +1,94 @@
+package Forms;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class IACTPLACEMENT {
+
+	public static void main(String[] args) throws InterruptedException {
+			System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+			ChromeDriver driver=new ChromeDriver();
+			driver.get("http://202.83.25.78:8091/student-placement");
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			
+			Thread.sleep(2000);
+			WebElement file_input = driver.findElement(By.id("imageget"));
+			Thread.sleep(2000);
+			String file_path = "C:\\Users\\Nandhi\\Desktop\\MB\\4mb.jpg"; 
+			file_input.sendKeys(file_path);
+			
+			driver.findElement(By.xpath("//body/div[@id='container']/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/div[1]/input[1]")).sendKeys("Test");
+			driver.findElement(By.id("ichno")).sendKeys("123");
+			WebElement element= driver.findElement(By.xpath("//select[@id='acdmyr']"));
+			Select dd=new Select(element);
+			dd.selectByValue("2020 - 2023");
+			WebElement element1= driver.findElement(By.id("campus"));
+			Select dd1=new Select(element1);
+			dd1.selectByValue("3");
+			WebElement element2= driver.findElement(By.xpath("//select[@id='dept']"));
+			Select dd2=new Select(element2);
+			dd2.selectByValue("40");
+			driver.findElement(By.xpath("//input[@id='datepicker2']")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//a[text()='1']")).click();
+			driver.findElement(By.id("aadhar")).sendKeys("111111111111");
+			driver.findElement(By.id("gender")).click();
+			//Select dd3=new Select(element3);
+			//dd3.selectByValue("male");
+			driver.findElement(By.id("maritalstatus")).click();
+			//Select dd4=new Select(element4);
+			//dd4.selectByValue("Single");
+			driver.findElement(By.id("mob")).sendKeys("9087475953");
+			driver.findElement(By.id("altno")).sendKeys("9087475953");
+			driver.findElement(By.id("email")).sendKeys("nandhy@gmail.com");
+			driver.findElement(By.id("address1")).sendKeys("40, Old Mambalam");
+			WebElement element4= driver.findElement(By.xpath("//select[@id='tempState']"));
+			Select dd4=new Select(element4);
+			dd4.selectByValue("2");
+			WebElement element5= driver.findElement(By.id("tempCity"));
+			Select dd5=new Select(element5);
+			dd5.selectByValue("5");
+			driver.findElement(By.id("pin1")).sendKeys("123321");
+			Thread.sleep(3000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+	        js.executeScript("window.scrollBy(0, 1000);");
+	        Thread.sleep(3000);
+			driver.findElement(By.id("sameAsAboveCheckbox")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.id("submit-btn1")).click();
+			WebElement element7= driver.findElement(By.id("plcmnt-rqrd"));
+			Select dd7=new Select(element7);
+			dd7.selectByValue("required");
+			
+			Thread.sleep(2000);
+			WebElement file_input1 = driver.findElement(By.id("imageget"));
+			Thread.sleep(2000);
+			String file_path1 = "C:\\Users\\Nandhi\\Desktop\\MB\\B24UG0015 (1)"; 
+			file_input1.sendKeys(file_path1);
+			driver.findElement(By.id("Portfolio")).sendKeys("HEllo");
+			driver.findElement(By.id("Linkedin")).sendKeys("HEllo");
+			driver.findElement(By.id("Instagram")).sendKeys("HEllo");
+			driver.findElement(By.id("Facebook")).sendKeys("HEllo");
+			WebElement element8= driver.findElement(By.id("stream"));
+			Select dd8=new Select(element8);
+			dd8.selectByValue("2");
+			WebElement element9= driver.findElement(By.id("spe1"));
+			Select dd9=new Select(element9);
+			dd9.selectByValue("2");
+			WebElement element10= driver.findElement(By.id("spe2"));
+			Select dd10=new Select(element10);
+			dd10.selectByValue("2");
+			WebElement element11= driver.findElement(By.id("spe3"));
+			Select dd11=new Select(element11);
+			dd11.selectByValue("2");
+			
+	}
+
+}
