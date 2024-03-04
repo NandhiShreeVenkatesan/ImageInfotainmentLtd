@@ -1,0 +1,46 @@
+package iac;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Upload {
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("http://10.1.1.1:8096/iac/FileUpload");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+        driver.findElement(By.id("mobile_no")).sendKeys("9087475953");
+        driver.findElement(By.id("login-btn")).click();
+        Thread.sleep(60000);
+
+        driver.findElement(By.id("verify-btn")).click();
+        
+        driver.findElement(By.xpath("//li[@class='txt-center'][1]")).click();
+        driver.findElement(By.className("me-2")).click();
+        driver.findElement(By.xpath("//input[@id='instruct-btn']")).click();
+
+        driver.findElement(By.id("ProofTypeid")).sendKeys("Hai");
+
+        WebElement fileInput = driver.findElement(By.id("InputFile"));
+        Thread.sleep(2000);
+        String filePath = "C:\\Users\\Nandhi\\Desktop\\MB\\PNG_transparency_demonstration_1.png";
+        fileInput.sendKeys(filePath);
+        driver.findElement(By.id("btnSubmit1")).click();
+        
+        WebElement fileInput1 = driver.findElement(By.id("ArtInputFile"));
+        Thread.sleep(2000);
+        String filePath1 = "C:\\Users\\Nandhi\\Desktop\\MB\\PNG_transparency_demonstration_1.png";
+        fileInput1.sendKeys(filePath1);
+        driver.findElement(By.id("btnSubmit")).click();
+        driver.findElement(By.id("btnfinalSubmit")).click();
+        driver.findElement(By.id("submit-btn4")).click();
+        driver.findElement(By.className("pop-close sucpop")).click();
+        driver.findElement(By.id("filenameid")).click();
+    }
+}
