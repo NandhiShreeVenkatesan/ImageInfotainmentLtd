@@ -1,0 +1,138 @@
+package pakage;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+
+public class Admin {
+
+	public static void main(String[] args) throws InterruptedException {
+		//Not completed-manage & partner details
+		System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("http://10.1.1.1:8064/Login");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        
+        //Login
+        driver.findElement(By.id("username")).sendKeys("TestAdmin@gmail.com");
+        driver.findElement(By.id("password")).sendKeys("12345");
+        driver.findElement(By.xpath("//input[@class='login-submit-btn btn']")).click();
+       
+        //Overall products
+       WebElement elementToHover = driver.findElement(By.className("box"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(elementToHover).perform();
+        driver.findElement(By.xpath("//a[text()='Overall Products List']")).click();
+        driver.findElement(By.xpath("(//input[@id='ProductName'])[1]")).sendKeys("water bottle");
+        driver.findElement(By.xpath("(//input[@id='Quantity'])[1]")).sendKeys("500");
+        driver.findElement(By.xpath("(//input[@id='Price'])[1]")).sendKeys("5");
+        driver.findElement(By.xpath("(//span[text()='Select'])[1]")).click();
+        driver.findElement(By.xpath("(//a[text()='Select All'])[1]")).click();
+        driver.findElement(By.xpath("//a[@class='plus add-ref-btn tooltp']")).click();
+        driver.findElement(By.xpath("//h5[text()='Add Products']")).click();
+        
+        driver.findElement(By.xpath("(//input[@id='ProductName'])[2]")).sendKeys("bottle");
+        driver.findElement(By.xpath("(//input[@id='Quantity'])[2]")).sendKeys("500");
+        driver.findElement(By.xpath("(//input[@id='Price'])[2]")).sendKeys("5");
+        driver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
+        driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[2]")).click();
+        driver.findElement(By.xpath("//h5[text()='Add Products']")).click();
+        driver.findElement(By.id("submit")).click();
+        
+        //View overall products
+        WebElement elementToHover1 = driver.findElement(By.className("box"));
+        Actions actions1 = new Actions(driver);
+        actions1.moveToElement(elementToHover1).perform();
+        driver.findElement(By.xpath("//a[text()='View Overall Products']")).click();
+        driver.findElement(By.xpath("(//a[@class='edit tooltp'])[1]")).click();
+        WebElement element1 = driver.findElement(By.xpath("(//input[@id='ProductName'])[1]"));
+        element1.clear();
+        element1.sendKeys("HtoO");
+        driver.findElement(By.id("submit")).click();
+        WebElement element= driver.findElement(By.xpath("(//a[@class='delete tooltp'])[20]"));
+        element.click();
+        String pageTitle = driver.getTitle();
+        System.out.println("Page Title: " + pageTitle);
+        driver.findElement(By.id("submit-btn")).click();
+      
+        //Associate Product to Course
+        WebElement elementToHover18 = driver.findElement(By.className("box"));
+        Actions actions18 = new Actions(driver);
+        actions18.moveToElement(elementToHover18).perform();
+        driver.findElement(By.xpath("//a[text()='Associate Product to Course']")).click();
+        WebElement element2 = driver.findElement(By.id("ddl"));
+		Select dd2=new Select(element2);
+		dd2.selectByVisibleText("Digital Filmmaking");
+		driver.findElement(By.id("associate-product")).click();
+		
+		
+	        WebElement element7 = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[1]"));
+	        element7.click();
+	        Keys keyToPress = Keys.ARROW_RIGHT;
+	        int numberOfKeyPresses = 4;
+	        for (int i = 0; i < numberOfKeyPresses; i++) {
+	            actions.sendKeys(element7, keyToPress).perform();
+	        }
+	     
+	        WebElement element17 = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[2]"));
+	        element17.click();
+	        Keys keyToPress1 = Keys.ARROW_RIGHT;
+	        int numberOfKeyPresses1 = 4;
+	        for (int i = 0; i < numberOfKeyPresses1; i++) {
+	            actions.sendKeys(element17, keyToPress1).perform();
+	        }
+	        Thread.sleep(3000);
+	        JavascriptExecutor js = (JavascriptExecutor) driver;
+	        js.executeScript("window.scrollBy(0, 1000);");
+	        Thread.sleep(3000);
+	        try {
+	            WebElement form = driver.findElement(By.xpath("//input[@value='Submit']"));
+	            form.click(); 
+	        } catch (NoSuchElementException ex) {
+	            ex.printStackTrace();
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+	        Thread.sleep(2000);
+	        JavascriptExecutor js4 = (JavascriptExecutor) driver;
+	        Thread.sleep(2000);
+	        js4.executeScript("window.scrollBy(400, 0);");
+	        Thread.sleep(2000);
+	        js.executeScript("window.scrollBy(0, 2000);");
+	        Thread.sleep(3000);
+	        driver.findElement(By.cssSelector("a[title='Edit']")).click();
+	        driver.findElement(By.id("associate-product")).click();
+	        WebElement element3 = driver.findElement(By.xpath("(//span[@class='plus qtyplus'])[1]"));
+	        element3.click();
+	        Keys keyToPress3 = Keys.ARROW_RIGHT;
+	        int numberOfKeyPresses3 = 4;
+	        for (int i = 0; i < numberOfKeyPresses3; i++) {
+	            actions.sendKeys(element3, keyToPress3).perform();
+	        }
+	        Thread.sleep(3000);
+	        JavascriptExecutor js5 = (JavascriptExecutor) driver;
+	        js5.executeScript("window.scrollBy(0, 2000);");
+	        Thread.sleep(3000);
+	        try {
+	            WebElement form = driver.findElement(By.xpath("//input[@value='Submit']"));
+	            form.click(); 
+	        } catch (NoSuchElementException ex) {
+	            ex.printStackTrace();
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+	        Thread.sleep(2000);
+	        driver.quit();
+	}
+	}
+
+
