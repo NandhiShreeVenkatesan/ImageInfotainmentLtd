@@ -1,0 +1,135 @@
+package pakage;
+
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+public class LeaveDetails {
+
+	public static void main(String[] args) throws InterruptedException {
+		//WebDriverManager.chromedriver().setup();
+		//System.setProperty("Webdriver.chrome.driver", "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --profile-directory=\"Profile 1\"");
+		System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("http://10.1.1.1:8112/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		
+		//LOGIN TO EMP
+		driver.findElement(By.id("Username")).sendKeys("hindhujar2005@gmail.com"); 
+		driver.findElement(By.id("Password")).sendKeys("0000"); 
+		driver.findElement(By.id("btnLogin")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+
+		//LEAVE APPLY
+		driver.findElement(By.xpath("//span[contains(text(),'Leave Details')]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Leave Apply')]")).click();
+		WebElement dropDown = driver.findElement(By.id("leaveTypeId"));
+		Select dd1=new Select(dropDown);
+		dd1.selectByIndex(3);
+	    WebElement calendarblah= driver.findElement(By.id("fromDate"));
+		calendarblah.click();
+		WebElement calendar= driver.findElement(By.xpath("(//a[@class='ui-datepicker-next ui-corner-all'])[2]"));		
+		calendar.click();
+		WebElement fromdate= driver.findElement(By.xpath("(//a[@class='ui-state-default'])[41]"));	
+		fromdate.click();		
+		WebElement calendarblah2= driver.findElement(By.name("toDate"));
+		calendarblah2.click();
+		WebElement calendar1= driver.findElement(By.xpath("(//a[@class='ui-datepicker-next ui-corner-all'])[2]"));
+	    calendar1.click();
+		WebElement todate= driver.findElement(By.xpath("(//a[@class='ui-state-default'])[41]"));
+		todate.click();	
+		driver.findElement(By.xpath("//div[@class='choices__list choices__list--single']")).click();
+		WebElement applyto= driver.findElement(By.name("search_terms"));
+		applyto.sendKeys("S");
+		driver.findElement(By.xpath("//div[@id='choices--applyTo-item-choice-2']")).click();
+		
+		driver.findElement(By.id("reason")).sendKeys("hai i am Sick because i am bored");
+		driver.findElement(By.id("btnSubmit")).click();
+		driver.findElement(By.xpath("(//a[@class='pop-close'])[2]")).click();
+		 
+		WebElement hai=driver.findElement(By.xpath("(//div[@class='pop-cont'])[2]"));
+			 if (hai.isDisplayed()) {
+				 System.out.println("Alreay Exist");
+				 driver.quit();
+			 } else {
+				 driver.findElement(By.xpath("(//div[@class='pop-cont'])[1]"));
+			 }
+		
+		//LEAVE REPORT
+		driver.findElement(By.xpath("//span[contains(text(),'Leave Details')]")).click();
+		driver.findElement(By.xpath("(//a[text()='Leave Report'])[2]")).click();
+		WebElement dropDown2 = driver.findElement(By.id("year"));
+		Select dd2=new Select(dropDown2);
+		dd2.selectByValue("2023");
+		WebElement dropDown3 = driver.findElement(By.id("month"));
+		Select dd3=new Select(dropDown3);
+		dd3.selectByValue("August");
+		driver.findElement(By.id("singlebutton")).click();
+		
+		//LOGOUT- EMP
+		driver.findElement(By.className("profile-name")).click();
+		driver.findElement(By.className("log-out")).click();
+		
+		//LOGIN TO HEAD
+		driver.findElement(By.id("Username")).sendKeys("thanuja2805@gmail.com"); 
+		driver.findElement(By.id("Password")).sendKeys("0000"); 
+		driver.findElement(By.id("btnLogin")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+		
+		//NOTIFICATION LEAVE DETAILS- Head
+		driver.findElement(By.className("note-count")).click();
+		driver.findElement(By.xpath("//a[text()='Leave Details']")).click();	
+		Thread.sleep(2000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0, 1000);");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//a[@id='ApproveId'])[1]")).click();
+		driver.findElement(By.xpath("(//input[@id='submit-btn'])")).click();
+
+		//LOGOUT- HEAD
+		driver.findElement(By.className("profile-name")).click();
+		driver.findElement(By.className("log-out")).click();
+		
+		//LOGIN TO ADMIN
+		driver.findElement(By.id("Username")).sendKeys("melbinjoe7@gmail.com"); 
+		driver.findElement(By.id("Password")).sendKeys("77"); 
+		driver.findElement(By.id("btnLogin")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+		
+		//NOTIFICATION LEAVE DETAILS- Admin
+		driver.findElement(By.className("note-count")).click();
+		driver.findElement(By.xpath("(//a[text()='Leave Report'])[1]")).click();
+		Thread.sleep(2000);
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;
+		js1.executeScript("window.scrollBy(0, 1500);");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//a[@id='HrApproveId'])[1]")).click();
+		driver.findElement(By.xpath("(//input[@id='submit-btn3'])")).click();
+
+		//LOGIN TO EMP
+		driver.findElement(By.id("Username")).sendKeys("hindhujar2005@gmail.com"); 
+		driver.findElement(By.id("Password")).sendKeys("0000"); 
+		driver.findElement(By.id("btnLogin")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+				
+	   //LEAVE REPORT
+		driver.findElement(By.xpath("//span[contains(text(),'Leave Details')]")).click();
+		driver.findElement(By.xpath("(//a[text()='Leave Report'])[2]")).click();
+		WebElement dropDown4 = driver.findElement(By.id("year"));
+		Select dd4=new Select(dropDown4);
+		dd4.selectByValue("2023");
+		WebElement dropDown5 = driver.findElement(By.id("month"));
+		Select dd5=new Select(dropDown5);
+		dd5.selectByValue("July");
+		driver.findElement(By.id("singlebutton")).click();
+				
+		System.out.println("Successfully completed");	
+		driver.quit();
+		
+	}
+}
