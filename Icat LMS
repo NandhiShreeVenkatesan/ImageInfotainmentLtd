@@ -1,0 +1,69 @@
+package icatLMS;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class SuperAdmin {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("http://202.83.25.78:8072/");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        
+        //LOGIN
+        driver.findElement(By.id("Username")).sendKeys("sadmin@imageil.com");
+        driver.findElement(By.id("Password")).sendKeys("Test@123");
+        driver.findElement(By.id("submit-btn")).click();
+        
+        //OVERALL LEAD
+        driver.findElement(By.xpath("//span[contains(text(),'Leads')]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//a[contains(text(),'Overall Leads')]")).click();
+        driver.findElement(By.xpath("//a[@class='plus addqkl tooltp']")).click();
+        driver.findElement(By.id("txtName")).sendKeys("Automate test One");
+        WebElement fileInput = driver.findElement(By.id("ddlGener"));
+        //fileInput.click();
+        Thread.sleep(2000);
+        Select dd=new Select(fileInput);
+		dd.selectByValue("Male");
+		driver.findElement(By.id("txtEmailId")).sendKeys("Automate1@gmail.com");
+		driver.findElement(By.id("txtMobileNo")).sendKeys("7589648652");
+		WebElement fileInput1 = driver.findElement(By.id("ddlSource"));
+		  Thread.sleep(2000);
+	        fileInput1.click();
+	        Select dd1=new Select(fileInput);
+	        dd1.selectByValue("Application Form (P)");
+	    driver.findElement(By.id("txtSourceDesc")).sendKeys("Source");
+	    WebElement fileInput2 = driver.findElement(By.id("ddlDegree"));
+	    Thread.sleep(2000);
+        fileInput2.click();
+        Select dd2=new Select(fileInput);
+        dd2.selectByValue("UG");
+        WebElement fileInput3 = driver.findElement(By.id("ddlCourse"));
+        Thread.sleep(2000);
+        fileInput3.click();
+        Select dd3=new Select(fileInput);
+        dd3.selectByValue("Visual Effects");
+        WebElement fileInput4 = driver.findElement(By.id("ddlCampus"));
+        Thread.sleep(2000);
+        fileInput4.click();
+        Select dd4=new Select(fileInput);
+        dd4.selectByValue("Bangalore");
+        driver.findElement(By.id("btnStep")).click();
+        
+       /* driver.findElement(By.xpath("//a[contains(text(),'aswini')]")).click();
+        driver.findElement(By.xpath(" //a[contains(text(),'View Full Detail')]")).click();
+        driver.findElement(By.xpath(" //a[@class='edit tooltp']")).click();*/
+        
+        
+        
+	}
+
+}
