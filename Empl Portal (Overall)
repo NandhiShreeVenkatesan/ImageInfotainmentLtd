@@ -1,0 +1,248 @@
+package pakage;
+
+
+import java.time.Duration;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+public class EMPOverall {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("Webdriver.chrome.driver","C:\\path\\to\\chromedriver.exe");
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("http://10.1.1.1:8112/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		
+		driver.findElement(By.id("Username")).sendKeys("melbinjoe7@gmail.com"); 
+		driver.findElement(By.id("Password")).sendKeys("77"); 
+		driver.findElement(By.id("btnLogin")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+		
+		driver.findElement(By.id("post-attendance-btn")).click();
+		driver.findElement(By.id("lReason")).sendKeys("Technical Issue");
+		driver.findElement(By.id("lApprovedBy")).sendKeys("Melbin joe");
+		driver.findElement(By.id("lateAtdn")).click();
+		driver.findElement(By.xpath("//a[@class='pop-close popclose']")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+		
+		driver.findElement(By.id("post-attendance-btn")).click();
+		driver.findElement(By.className("post-attendance-btn")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+		
+		driver.findElement(By.className("smll-btn")).click();
+		driver.findElement(By.className("navi-txt")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Ask Me Later')]")).click();
+		
+		driver.findElement(By.id("goToNextSlide")).click();
+		driver.findElement(By.xpath("(//a[@class='item-selector link-icon bg-lt-clr-5'])[2]")).click();
+		driver.findElement(By.xpath("//button[@class='lg-close lg-icon']")).click();
+		
+		//ATTENDANCE PAGE
+		driver.findElement(By.xpath("//span[text()='Attendance']")).click();
+		WebElement element= driver.findElement(By.id("year"));
+		Select dd=new Select(element);
+		dd.selectByValue("2023");
+		WebElement element1= driver.findElement(By.id("month"));
+		Select dd1=new Select(element1);
+		dd1.selectByVisibleText("June");
+		driver.findElement(By.xpath("//input[@class='btn']")).click();
+		//driver.findElement(By.xpath("(//a[@class='viewlog-icon '])[2]")).click();
+		//driver.findElement(By.className("pop-close ")).click();
+		
+		//WORKSHEET-INFO
+	    driver.findElement(By.xpath("//span[text()='Work Sheet']")).click();
+	    driver.findElement(By.xpath("//a[text()='Work Sheet Info']")).click();		
+	    driver.findElement(By.id("textbox1")).sendKeys("hai i have completed my task"); 
+	    driver.findElement(By.id("r2_1")).click();
+	    driver.findElement(By.name("ctl00$MainContent$WrkSheetSubmtBtn")).click();
+	    driver.findElement(By.className("pop-close")).click();
+	    Thread.sleep(2000);
+	    
+	    //WORKSHEET- MONTHLY REPORT
+        driver.findElement(By.xpath("//a[text()='Monthly Report']")).click();
+        driver.findElement(By.xpath("//input[@class='input-txt datepick hasDatepicker']")).click();
+        WebElement monthDropdown = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+        Select monthSelect = new Select(monthDropdown);
+        monthSelect.selectByValue("5");
+        WebElement yearDropdown = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+        Select yearSelect = new Select(yearDropdown);
+        yearSelect.selectByValue("2023");
+        driver.findElement(By.xpath("//a[text()='15']")).click();
+        driver.findElement(By.className("btn")).click();
+        Thread.sleep(2000);
+        
+        //HOLIDAY CALENDAR
+        driver.findElement(By.xpath("//span[text()='Holiday Calendar']")).click();
+        WebElement element4 = driver.findElement(By.id("year"));
+        Select dd4=new Select(element4);
+		dd4.selectByValue("2022");
+		Thread.sleep(2000);
+		
+		//BULLETIN
+		driver.findElement(By.xpath("//span[text()='Bulletin']")).click();
+		Thread.sleep(2000);
+		
+		//HR NOTICE
+		driver.findElement(By.xpath("//span[text()='HR-Notice']")).click();
+		 WebElement element5 =driver.findElement(By.id("sortDd"));
+	        Select dd5=new Select(element5);
+			dd5.selectByValue("1");
+		driver.findElement(By.xpath("//a[@class='item-selector link-icon']")).click();	
+		driver.findElement(By.xpath("//button[@class='lg-close lg-icon']")).click();	
+		Thread.sleep(2000);
+		
+		//CEO DESK
+		driver.findElement(By.xpath("(//span[@class='navi-txt'])[8]")).click();
+		driver.findElement(By.className("link-icon")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[@class='lg-close lg-icon']")).click();	
+		Thread.sleep(2000);
+		
+		//MY TEAM
+		driver.findElement(By.xpath("//span[text()='My Team']")).click();
+		 driver.findElement(By.xpath("//input[@class='input-txt datepick hasDatepicker']")).click();
+	        WebElement monthDropdown1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+	        Select monthSelect1 = new Select(monthDropdown1);
+	        monthSelect1.selectByValue("5");
+	        WebElement yearDropdown1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+	        Select yearSelect1 = new Select(yearDropdown1);
+	        yearSelect1.selectByValue("2023");
+	        driver.findElement(By.xpath("//a[text()='15']")).click();
+	        driver.findElement(By.xpath("//input[@class='input-txt']")).sendKeys("gokul");
+			 WebElement element6 =driver.findElement(By.xpath("//select[@class='input-txt ev']"));
+		        Select dd6=new Select(element6);
+				dd6.selectByVisibleText("TNagar");	
+				driver.findElement(By.id("filterBtn")).click();
+				Thread.sleep(2000);
+				
+		//HR PANEl
+		driver.findElement(By.xpath("//span[text()='HR Panel']")).click();
+			driver.findElement(By.xpath("//a[text()='Attendance Report']")).click();
+			driver.findElement(By.xpath("//a[@class='md-data-title icat']")).click();
+			driver.findElement(By.xpath("(//a[text()='Hyderabad'])[1]")).click();
+			WebElement element7 =driver.findElement(By.id("departmentId"));
+	        Select dd7=new Select(element7);
+			dd7.selectByVisibleText("Administration");	
+			driver.findElement(By.id("searchTxt")).sendKeys("hr");
+			driver.findElement(By.xpath("//input[@class='btn filtersbmt']")).click();
+		
+		//EMPLOYEE DETAILS
+			driver.findElement(By.xpath("//span[text()='Employee Details']")).click();
+			driver.findElement(By.xpath("//a[text()='Active EMP List']")).click();
+			driver.findElement(By.xpath("(//a[text()='2'])[1]")).click();
+	        WebElement searchInput = driver.findElement(By.id("search"));
+	        searchInput.sendKeys("hr");
+	        WebElement searchButton = driver.findElement(By.id("srcbtn"));
+	        searchButton.click();
+	        if (driver.findElements(By.xpath("//a[text()='HR ADMIN']")).size() > 0) {
+	            System.out.println("Search result is displayed on the page.");
+	        } else {
+	            System.out.println("Search result is NOT displayed on the page.");
+	        }
+
+		//FIELD MANAGEMENT- LOGIN BANNER
+		driver.findElement(By.xpath("//span[text()='Field Management']")).click();
+		driver.findElement(By.xpath("//a[text()='Manage Login Banner']")).click();
+			driver.findElement(By.id("imagefile1")).sendKeys("C:\\Users\\Nandhi\\Desktop\\MB\\resize1.jpg");
+			WebElement element8 =driver.findElement(By.id("status"));
+	        Select dd8=new Select(element8);
+			dd8.selectByVisibleText("Enable");	
+			driver.findElement(By.id("banSbmt")).click();
+			driver.findElement(By.xpath("(//a[@class='edit'])[4]")).click();
+			WebElement element9 =driver.findElement(By.id("status"));
+	        Select dd9=new Select(element9);
+			dd9.selectByVisibleText("Disable");
+			driver.findElement(By.id("banSbmt")).click();
+			driver.findElement(By.xpath("(//a[@class='cancel del'])[3]")).click();
+			
+		//FIELD MANAGEMENT- MANAGE STATE
+		driver.findElement(By.xpath("//span[text()='Field Management']")).click();
+		driver.findElement(By.xpath("//a[text()='Manage State']")).click();
+		driver.findElement(By.id("IState")).sendKeys("Girl");
+		driver.findElement(By.id("add-sts1")).click();
+		driver.findElement(By.xpath("(//a[@class='edit'])[42]")).click();
+		driver.findElement(By.xpath("(//a[@class='save'])[42]")).click();
+		driver.findElement(By.xpath("(//a[@class='cancel delete'])[11]")).click();
+		driver.findElement(By.id("yes")).click();
+		
+		//FIELD MANAGEMENT- MANAGE CITY
+		driver.findElement(By.xpath("//a[text()='Manage City']")).click();
+		WebElement element10 =driver.findElement(By.id("state"));
+        Select dd10=new Select(element10);
+		dd10.selectByVisibleText("HAI");
+		driver.findElement(By.xpath("//a[@class='edit']")).click();
+		driver.findElement(By.className("save")).click();
+		//driver.findElement(By.xpath("//a[@class='cancel delete']")).click();
+		driver.findElement(By.xpath("//span[text()='Field Management']")).click();
+		driver.findElement(By.xpath("//a[text()='Manage City']")).click();
+		driver.findElement(By.id("ICity")).sendKeys("Gossip Girl");
+		driver.findElement(By.id("yes")).click();
+		
+		//FIELD MANAGEMENT- HR NOTICE
+		driver.findElement(By.xpath("//span[text()='Field Management']")).click();
+		driver.findElement(By.xpath("//a[text()='Manage HR Notice']")).click();
+		driver.findElement(By.id("contentDetails")).sendKeys("Vampire Dairies");
+		driver.findElement(By.id("attachmentFile")).sendKeys("C:\\Users\\Nandhi\\Desktop\\MB\\resize1.jpg");
+		driver.findElement(By.xpath("//input[@class='input-txt datepick mf hasDatepicker']")).click();
+		WebElement monthDropdown2 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+		Select monthSelect2 = new Select(monthDropdown2);
+		monthSelect2.selectByVisibleText("Aug");
+		WebElement yearDropdown3= driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+		Select yearSelect3 = new Select(yearDropdown3);
+		yearSelect3.selectByValue("2023");
+        driver.findElement(By.xpath("//a[text()='15']")).click();
+        driver.findElement(By.xpath("(//button[@type='button'])[1]")).click();
+        driver.findElement(By.xpath("(//a[text()='Select All'])[1]")).click();
+        driver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
+        driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[2]")).click();
+        driver.findElement(By.xpath("(//button[@type='button'])[3]")).click();
+        driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[3]")).click();
+        driver.findElement(By.xpath("(//button[@type='button'])[4]")).click();
+        driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[4]")).click();
+        WebElement element11 =driver.findElement(By.name("status"));
+        Select dd11=new Select(element11);
+		dd11.selectByVisibleText("Enable");
+		driver.findElement(By.xpath("//input[@class='btn me-2']")).click();
+		
+		//FIELD MANAGEMENT- MANAGE BULLETIN
+		driver.findElement(By.xpath("//span[text()='Field Management']")).click();
+		driver.findElement(By.xpath("//a[text()='Manage Bulletin']")).click();
+		driver.findElement(By.name("feedContent")).sendKeys("Vampire Dairies");
+		driver.findElement(By.name("feedTo")).sendKeys("Vampire Dairies");
+		 WebElement element12 =driver.findElement(By.name("feedType"));
+	        Select dd12=new Select(element12);
+			dd12.selectByVisibleText("Congrats");
+		driver.findElement(By.xpath("//input[@class='btn m-2']")).click();
+		
+		//FIELD MANAGEMENT- MANAGE HOLIDAY
+		driver.findElement(By.xpath("//span[text()='Field Management']")).click();
+		driver.findElement(By.xpath("//a[text()='Manage Holiday']")).click();
+		driver.findElement(By.xpath("( //a[@class='ui-state-default'])[4]")).click();
+		driver.findElement(By.className("ms-options-wrap")).click();
+		driver.findElement(By.xpath("(//a[text()='Select All'])[1]")).click();
+	    driver.findElement(By.xpath("//h5[text()='Holiday Details']")).click(); 
+		driver.findElement(By.xpath("//div[@id='ms-list-2']")).click();
+		driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[2]")).click();
+		driver.findElement(By.xpath("//h5[text()='Holiday Details']")).click(); 
+		driver.findElement(By.xpath("//div[@id='ms-list-3']")).click();
+		driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[3]")).click();
+		driver.findElement(By.xpath("//h5[text()='Holiday Details']")).click(); 
+		driver.findElement(By.xpath("//div[@id='ms-list-4']")).click();
+		driver.findElement(By.xpath("(//a[@class='ms-selectall global'])[4]")).click();
+		driver.findElement(By.xpath("//h5[text()='Holiday Details']")).click(); 
+		driver.findElement(By.id("details")).sendKeys("today is Holiday");  
+	    driver.findElement(By.id("save-btn")).click(); 
+	    driver.findElement(By.xpath("//a[@class='pop-close ha']")).click(); 
+		
+		//Logout
+		driver.findElement(By.xpath("//span[text()='Logout']")).click();
+		
+	}
+
+}
